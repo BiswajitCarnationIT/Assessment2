@@ -2,7 +2,7 @@ import { FETCH_NEWS_FAILURE, FETCH_NEWS_REQUEST, FETCH_NEWS_SUCCESS } from "./ne
 
 const initialState = {
     loading:false,
-    news:['abc'],
+    news:[],
     error: ''
 }
 
