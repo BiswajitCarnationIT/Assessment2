@@ -3,6 +3,7 @@ import { fetchNews, fetchNewsFailure, fetchNewsRequest, fetchNewsSuccess } from 
 import { connect } from "react-redux";
 
 import { useSelector,useDispatch } from "react-redux";
+import axios from "axios";
 
 
 const TopNewContainer = () => {
@@ -10,14 +11,30 @@ const TopNewContainer = () => {
     const dispatch = useDispatch()
     console.log("hi", newsData);
     const topNienty = []
-    for(let i =0;i<90;i++){
-        topNienty[i] = newsData.news[i] ; 
+    const topNientyBody = []
+    if(newsData.news[1]) console.log('length');
+    if(newsData.news[1]){
+        for(let i =0;i<90;i++){
+            topNienty[i] = newsData.news[i] ; 
+            const id = newsData.news[i]
+            axios.get(`https://hacker-news.firebaseio.com/v0/item/${id}.json?print=pretty`)
+        .then(response => {
+            const news = response.data
+            topNientyBody[i] = news
+            console.log('hi',topNientyBody[i].by)
+        })
     }
+    
+    
+         
+    }
+    //console.log('hi',topNientyBody[0].by);
+    
 
     return(
         <div>
             {/* <h1>{newsData.news[0]}</h1> */}
-            <h1>{topNienty}</h1>
+            <h1>{topNientyBody.map(user => <div><h3>{user.by}</h3></div>)}</h1>
             <button onClick = {()=>dispatch(fetchNews())}>Top news</button>
         </div>
     )
