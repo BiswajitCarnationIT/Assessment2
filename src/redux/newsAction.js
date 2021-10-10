@@ -53,3 +53,8 @@ export const fetchNews = () => {
         })
     }
 }
+
+export const fetchComments = (index,ParentId,kids) => {
+    return function(dispatch) {console.log('index',index,' ' ,ParentId,'kids',kids)}
+
+}
