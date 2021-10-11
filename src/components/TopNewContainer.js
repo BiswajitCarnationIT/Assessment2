@@ -25,16 +25,23 @@ const TopNewContainer = () => {
     fetchComments(i,user,kids)
     
   }
+  //newsData.news[i]
+  //newsData.news.sort((a, b) => (a.data.time > b.data.timer) ? 1 : -1)
+  newsData.news.sort((a, b) => (a.data.time > b.data.timer) ? 1 : -1)
+  const date=(time)=>{
+      new Date(time)
+  }
   return (
     <div>
       <button onClick={() => dispatch(fetchNews())}>Top news</button>
       <h1>
         {newsData.news.map((user,i) => (
           <div className="box">
-            <p>Title: {user.data.title}</p>
-            <h3>Author: {user.data.by}</h3>
-            <button onClick = {() => dispatch(HandleFetch(i,user,user.data.kids))}>Comments</button>
-            <Comments comments = {user,user.data.kids}/>
+            
+            <h6>Title: {user.data.title} id: {user.data.id}  (Score : {user.data.score}) time:{(user.data.time)}</h6>
+            <h6>Author: {user.data.by} </h6>
+            {/* <button onClick = {() => dispatch(()=>fetchComments(i,user,user.data.kids))}>Comments</button> */}
+            <Comments comments = {user.data.kids}/>
           </div>
         ))}
       </h1>

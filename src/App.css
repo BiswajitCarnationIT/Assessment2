@@ -38,9 +38,12 @@
 }
 
 .box{
-  background-color: red;
+  background-color: rgb(172, 165, 127);
   width: 32%;
   height: 400px;
   float: left;
   margin: 10px;
+}
+#EachComments{
+  background-color: antiquewhite;
 }

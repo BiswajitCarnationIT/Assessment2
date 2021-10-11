@@ -1,6 +1,7 @@
 import { FETCH_COMMENT_FAILURE, FETCH_COMMENT_REQUEST, FETCH_COMMENT_SUCCESS } from "./commentsActionType"
 
 const initialState = {
+    parentId:0,
     loading:false,
     comments:[],
     error: ''
