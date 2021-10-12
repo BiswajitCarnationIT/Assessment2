@@ -6,8 +6,6 @@ import {
 } from "./newsActionType";
 
 export const fetchNewsRequest = () => {
-  console.log(" fetchNewsRequest");
-
   return {
     type: FETCH_NEWS_REQUEST,
   };
@@ -51,7 +49,6 @@ export const fetchNews = () => {
       })
       .catch((error) => {
         const errorMsg = error.message;
-        console.log("url error response", errorMsg);
         dispatch(fetchNewsFailure(error));
       });
   };

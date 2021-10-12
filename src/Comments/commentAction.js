@@ -13,7 +13,6 @@ export const fetchCommnetsRequest = () => {
 };
 
 export const fetchCommnetsSuccess = (comments, parentObj) => {
-  console.log("fetchCommnetsSuccess called", comments);
   let payload = {
     comments,
     parentObj,
@@ -32,7 +31,6 @@ export const fetchCommnetsFailure = (error) => {
 };
 
 export const fetchCommnets = (kids) => {
-  console.log("fetch comment function kids", kids.comments.id);
   return (dispatch) => {
     dispatch(fetchCommnetsRequest);
     axios
@@ -50,14 +48,12 @@ export const fetchCommnets = (kids) => {
             );
           }
           Promise.all(promices).then((values) => {
-            console.log("comments", values);
             dispatch(fetchCommnetsSuccess(values, parentObj));
           });
         }
       })
       .catch((error) => {
         const errorMsg = error.message;
-        console.log("url error response", errorMsg);
       });
   };
 };

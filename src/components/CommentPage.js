@@ -4,7 +4,6 @@ import { useSelector } from "react-redux";
 const CommentPage = () => {
   const commentAndParentData = useSelector((state) => state.commentReducer);
   const commentData = commentAndParentData.comments;
-  console.log(commentAndParentData.comments.parentObj);
   return (
     <div id="commentFullPage">
       {commentAndParentData &&

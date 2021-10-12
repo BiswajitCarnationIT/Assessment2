@@ -1,6 +1,6 @@
 import React from "react";
 import {
-    fetchComments,
+  fetchComments,
   fetchNews,
   fetchNewsFailure,
   fetchNewsRequest,
@@ -18,30 +18,30 @@ const TopNewContainer = () => {
 
   const commentData = useSelector((state) => state.commentReducer);
 
-  const HandleFetch = (i,user,kids) => {
-    fetchComments(i,user,kids)
-    
-  }
-  //newsData.news[i]
-  //newsData.news.sort((a, b) => (a.data.time > b.data.timer) ? 1 : -1)
-  newsData.news.sort((a, b) => (a.data.time > b.data.timer) ? 1 : -1)
-  let d='a'
-  const date=(time)=>{
-    console.log(time)
-      d =new  Date(time)
-      console.log(d)
-  }
-  console.log(d)
+  const HandleFetch = (i, user, kids) => {
+    fetchComments(i, user, kids);
+  };
+
+  newsData.news.sort((a, b) => (a.data.time > b.data.timer ? 1 : -1));
+  let d = "a";
+  const date = (time) => {
+    console.log(time);
+    d = new Date(time);
+  };
   return (
     <div>
-      <button className="mainButton" onClick={() => dispatch(fetchNews())}>Top news</button>
+      <button className="mainButton" onClick={() => dispatch(fetchNews())}>
+        Top news
+      </button>
       <h1>
-        {newsData.news.map((user,i) => (
+        {newsData.news.map((user, i) => (
           <div className="box">
-            
-            <h6>Title: {user.data.title} id: {user.data.id}  (Score : {user.data.score}) time:{date(user.data.time)}</h6>
+            <h6>
+              Title: {user.data.title} id: {user.data.id} (Score :{" "}
+              {user.data.score}) {date(user.data.time)}
+            </h6>
             <h6>Author: {user.data.by} </h6>
-            <Comments comments = {user.data} />
+            <Comments comments={user.data} />
           </div>
         ))}
       </h1>
