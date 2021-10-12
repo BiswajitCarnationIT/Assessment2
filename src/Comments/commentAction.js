@@ -39,7 +39,7 @@ export const fetchCommnets = (kids) => {
       )
       .then((response) => {
         const parentObj = response.data;
-        if (kids && kids.comments) {
+        if (kids && kids.comments && kids.comments.kids) {
           let promices = [];
           for (let i = 0; i < kids.comments.kids.length; i++) {
             const id = kids.comments.kids[i];
@@ -54,6 +54,7 @@ export const fetchCommnets = (kids) => {
       })
       .catch((error) => {
         const errorMsg = error.message;
+        dispatch(fetchCommnetsFailure(error));
       });
   };
 };
