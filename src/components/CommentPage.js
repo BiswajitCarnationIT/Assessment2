@@ -6,14 +6,18 @@ const CommentPage = () => {
   const commentData = commentAndParentData.comments;
   return (
     <div id="commentFullPage">
-      {commentAndParentData &&
-        commentAndParentData.comments &&
-        commentAndParentData.comments.parentObj && (
-          <div id="TitleHeader">
-            <p>Title: {commentAndParentData.comments.parentObj.title}</p>
-            <p>Authored by: {commentAndParentData.comments.parentObj.by}</p>
-          </div>
-        )}
+      {!commentAndParentData ? (
+        <p>No Comment</p>
+      ) : !commentAndParentData.comments ? (
+        <p>No Comment</p>
+      ) : !commentAndParentData.comments.parentObj ? (
+        <p>Loading Comments</p>
+      ) : (
+        <div id="TitleHeader">
+          <p>Title: {commentAndParentData.comments.parentObj.title}</p>
+          <p>Authored by: {commentAndParentData.comments.parentObj.by}</p>
+        </div>
+      )}
       <p>
         {commentAndParentData &&
           commentData &&

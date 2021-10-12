@@ -12,7 +12,6 @@ export const fetchNewsRequest = () => {
 };
 
 export const fetchNewsSuccess = (news) => {
-  console.log("fetchNewsSuccess called", news);
   return {
     type: FETCH_NEWS_SUCCESS,
     payload: news,
@@ -27,10 +26,8 @@ export const fetchNewsFailure = (error) => {
 };
 
 export const fetchNews = () => {
-  console.log("fetch function");
   return (dispatch) => {
     dispatch(fetchNewsRequest);
-    console.log("fetch function fetchNewsRequest");
     let promices = [];
     axios
       .get("https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty")
@@ -51,11 +48,5 @@ export const fetchNews = () => {
         const errorMsg = error.message;
         dispatch(fetchNewsFailure(error));
       });
-  };
-};
-
-export const fetchComments = (index, ParentId, kids) => {
-  return function (dispatch) {
-    console.log("index", index, " ", ParentId, "kids", kids);
   };
 };

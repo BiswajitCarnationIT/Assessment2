@@ -6,8 +6,6 @@ import store from "./Store";
 import Router from "./Router";
 import { BrowserRouter } from "react-router-dom";
 
-store.subscribe(() => console.log(store.getState()));
-
 function App() {
   return (
     <div className="App">
