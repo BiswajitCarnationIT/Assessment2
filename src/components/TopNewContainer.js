@@ -16,6 +16,13 @@ const TopNewContainer = () => {
       <button className="mainButton" onClick={() => dispatch(fetchNews())}>
         Top news
       </button>
+      {!newsData ? null : !newsData.news[0] ? (
+        <>
+          <p>Click and wait untit it gets loaded</p>
+          <p>News feeds will appeare here within a munite after click</p>
+        </>
+      ) : null}
+
       <h1>
         {!newsData ? (
           <p>Error Loading News</p>
