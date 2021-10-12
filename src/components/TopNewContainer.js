@@ -10,17 +10,17 @@ const TopNewContainer = () => {
 
   newsData.news.sort((a, b) => (a.data.time > b.data.timer ? 1 : -1));
 
-  console.log(newsData);
   return (
     <div>
       <button className="mainButton" onClick={() => dispatch(fetchNews())}>
         Top news
       </button>
+
       <h1>
         {!newsData ? (
-          <p>Error Loaging News</p>
+          <p>Error Loading News</p>
         ) : !newsData.news ? (
-          <p>Error Loaging News</p>
+          <p>Error Loading News</p>
         ) : (
           newsData.news.map((user, i) => (
             <div className="box">
