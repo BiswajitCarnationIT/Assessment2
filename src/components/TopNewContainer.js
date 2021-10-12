@@ -34,7 +34,7 @@ const TopNewContainer = () => {
   console.log(d)
   return (
     <div>
-      <button onClick={() => dispatch(fetchNews())}>Top news</button>
+      <button className="mainButton" onClick={() => dispatch(fetchNews())}>Top news</button>
       <h1>
         {newsData.news.map((user,i) => (
           <div className="box">

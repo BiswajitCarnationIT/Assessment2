@@ -20,7 +20,7 @@ export const Comments = (kid) => {
         commentData.comments[0].data ? (
           commentData.comments[0].data.by
         ) : (
-          <p>error</p>
+          <p></p>
         )}
       </p>
     </div>
