@@ -1,79 +1,48 @@
 import React from "react";
-import { fetchNews, fetchNewsFailure, fetchNewsRequest, fetchNewsSuccess } from "../redux/newsAction";
-import { connect } from "react-redux";
+import { fetchNews } from "../redux/newsAction";
 
-import { useSelector,useDispatch } from "react-redux";
-
+import { useSelector, useDispatch } from "react-redux";
+import { Comments } from "./Comments";
 
 const TopNewContainer = () => {
-    const newsData = useSelector((state)=>state.newsReducer);   //stare.reducer
-    const dispatch = useDispatch()
-    console.log("hi", newsData);
-    const topNienty = []
-    for(let i =0;i<90;i++){
-        topNienty[i] = newsData.news[i] ; 
-    }
+  const newsData = useSelector((state) => state.newsReducer);
+  const dispatch = useDispatch();
 
-    return(
-        <div>
-            {/* <h1>{newsData.news[0]}</h1> */}
-            <h1>{topNienty}</h1>
-            <button onClick = {()=>dispatch(fetchNews())}>Top news</button>
-        </div>
-    )
-    // return newsData.loading ? (
-    //   <h2>loading</h2>
-    // ) : newsData.error ? (
-    //   <h2>{newsData.error}</h2>
-    // ) : (
-    //   <div>
-    //     <h2>UserList</h2>
-    //     <div>
-    //         {/* {newsData && newsData.users && newsData.users.map(user => <p>{user.name}</p>) } */}
-    //         {newsData.loading}
-    //     </div>
-    //     <button onClick={fetchNews}> Fetch user</button>
-    //   </div>
-    // );
-  }
+  if (newsData.news && newsData.news.data && newsData.news.data.time)
+    newsData.news.sort((a, b) => (a.data.time > b.data.time ? 1 : -1));
 
-  export  default TopNewContainer
+  return (
+    <div>
+      <button className="mainButton" onClick={() => dispatch(fetchNews())}>
+        Top news
+      </button>
+      {!newsData ? null : !newsData.news[0] ? (
+        <>
+          <p>Click and wait untit it gets loaded</p>
+          <p>News feeds will appeare here within a munite after click</p>
+        </>
+      ) : null}
 
-// const TopNewContainer = (newsData, fetch_news) => {
-//   let clicked = false;
-//   const hanleFetch = () => {
-//     if (fetch_news) {
-//       console.log("hi 2", newsData);
-//     }
-//     clicked = true;
-//   };
-//   console.log("hi", newsData);
-//   return newsData.loading ? (
-//     <h2>loading</h2>
-//   ) : newsData.error ? (
-//     <h2>{newsData.error}</h2>
-//   ) : (
-//     <div>
-//       <h2>UserList</h2>
-//       <div>
-//           {/* {newsData && newsData.users && newsData.users.map(user => <p>{user.name}</p>) } */}
-//           {newsData.loading}
-//       </div>
-//       <button onClick={fetchNews}> Fetch user</button>
-//     </div>
-//   );
-// }
+      <h1>
+        {!newsData ? (
+          <p>Error Loading News</p>
+        ) : !newsData.news ? (
+          <p>Error Loading News</p>
+        ) : (
+          newsData.news.map((user, i) => (
+            <div className="box">
+              <h6>
+                Title: {user.data.title} id: {user.data.id} (Score :{" "}
+                {user.data.score})
+              </h6>
+              <h6>Author: {user.data.by} </h6>
+              <Comments comments={user.data} />
+            </div>
+          ))
+        )}
+      </h1>
+    </div>
+  );
+};
 
-// const mapStateToProps = (state) => {
-//   return {
-//     newsData: state.news_reducer
-//   };
-// };
-
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     fetch_news: () => dispatch(fetchNews())
-//   };
-// };
-
-// export default connect(mapStateToProps, mapDispatchToProps)(TopNewContainer);
+export default TopNewContainer;
