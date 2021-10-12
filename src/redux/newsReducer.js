@@ -9,11 +9,14 @@ const initialState = {
 const newsReducer = (state = initialState,action) => {
     switch(action.type){
         case FETCH_NEWS_REQUEST:
+            console.log('loading')
             return{
-                ...state,
-                loading: true
+                loading: true,
+                news:  [],
+                error: ''
             }
         case FETCH_NEWS_SUCCESS:
+            console.log('loaded')
             return {
                 loading: false,
                 news:  action.payload,

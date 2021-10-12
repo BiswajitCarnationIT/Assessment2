@@ -1,7 +1,7 @@
 import { FETCH_COMMENT_FAILURE, FETCH_COMMENT_REQUEST, FETCH_COMMENT_SUCCESS } from "./commentsActionType"
 
 const initialState = {
-    parentId:0,
+    parentId:[],
     loading:false,
     comments:[],
     error: ''
@@ -16,6 +16,7 @@ const commentReducer = (state = initialState,action) => {
             }
         case FETCH_COMMENT_SUCCESS:
             return {
+                //parentId:action.payload.parentId,
                 loading: false,
                 comments:  action.payload,
                 error: ''

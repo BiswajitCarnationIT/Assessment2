@@ -8,15 +8,11 @@ export const fetchCommnetsRequest = () => {
     }
 }
 
-export const fetchCommnetsSuccess = (comments,parentObj) => {
-    console.log('fetchCommnetsSuccess called',comments)
-    let payload = {
-        comments,
-        parentObj
-     }
+export const fetchCommnetsSuccess = (Commnets,parentObj) => {
+    console.log('fetchCommnetsSuccess called',Commnets)
     return {
         type: FETCH_COMMENT_SUCCESS,
-        payload
+        payload:Commnets
     }
 }
 
@@ -57,7 +53,7 @@ export const fetchCommnets = (kids) => {
         .catch(error => {
             const errorMsg = error.message
             console.log('url error response',errorMsg);
-            //dispatch(fetchNewsFailure(error))
+            dispatch(fetchNewsFailure(error))
         })
             
             
