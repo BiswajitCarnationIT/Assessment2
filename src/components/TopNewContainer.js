@@ -15,13 +15,10 @@ import { Comments } from "./Comments";
 const TopNewContainer = () => {
   const newsData = useSelector((state) => state.newsReducer);
   const dispatch = useDispatch();
-  //console.log("hi from TopContainer", newsData.news[0]);
 
   const commentData = useSelector((state) => state.commentReducer);
-  //console.log("hi from TopContainer", commentData);
 
   const HandleFetch = (i,user,kids) => {
-    //const newsData = useSelector((state) => state.newsReducer);
     fetchComments(i,user,kids)
     
   }
@@ -34,7 +31,6 @@ const TopNewContainer = () => {
       d =new  Date(time)
       console.log(d)
   }
-  //date()
   console.log(d)
   return (
     <div>
@@ -45,7 +41,6 @@ const TopNewContainer = () => {
             
             <h6>Title: {user.data.title} id: {user.data.id}  (Score : {user.data.score}) time:{date(user.data.time)}</h6>
             <h6>Author: {user.data.by} </h6>
-            {/* <button onClick = {() => dispatch(()=>fetchComments(i,user,user.data.kids))}>Comments</button> */}
             <Comments comments = {user.data} />
           </div>
         ))}

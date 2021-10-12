@@ -16,7 +16,6 @@ const commentReducer = (state = initialState,action) => {
             }
         case FETCH_COMMENT_SUCCESS:
             return {
-                //parentId:action.payload.parentId,
                 loading: false,
                 comments:  action.payload,
                 error: ''
