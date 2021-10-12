@@ -13,16 +13,6 @@ export const Comments = (kid) => {
       <NavLink exact activeClassName="active_class" to="/Comments">
         <button onClick={() => dispatch(fetchCommnets(kid))}>comment</button>
       </NavLink>
-
-      <p>
-        {commentData &&
-        commentData.comments[0] &&
-        commentData.comments[0].data ? (
-          commentData.comments[0].data.by
-        ) : (
-          <p></p>
-        )}
-      </p>
     </div>
   );
 };

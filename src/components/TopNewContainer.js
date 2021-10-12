@@ -8,14 +8,14 @@ const TopNewContainer = () => {
   const newsData = useSelector((state) => state.newsReducer);
   const dispatch = useDispatch();
 
-  newsData.news.sort((a, b) => (a.data.time > b.data.timer ? 1 : -1));
+  if (newsData.news && newsData.news.data && newsData.news.data.time)
+    newsData.news.sort((a, b) => (a.data.time > b.data.time ? 1 : -1));
 
   return (
     <div>
       <button className="mainButton" onClick={() => dispatch(fetchNews())}>
         Top news
       </button>
-
       <h1>
         {!newsData ? (
           <p>Error Loading News</p>
